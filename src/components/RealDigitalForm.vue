@@ -10,9 +10,7 @@
 <script>
 import { ref } from 'vue'
 
-import getJsonDataFromForm from '../utils/getJsonDataFromForm'
-import sendRequest from '../utils/sendRequest'
-import validateForm from '../utils/validateForm'
+import { getJsonDataFromForm, sendRequest, validateForm } from '../utils'
 
 const realDigitalForm = ref(null)
 const errors = ref([])
@@ -30,7 +28,7 @@ const hasErrors = (form) => {
   return hasError
 }
 
-const handleSubmit = (emit, action, method) => () => {
+const handleSubmit = (emit) => () => {
   if (hasErrors(realDigitalForm)) {
     return
   }
@@ -56,7 +54,7 @@ export default {
     return {
       errors,
       realDigitalForm,
-      handleSubmit: handleSubmit(emit, props.action, props.method),
+      handleSubmit: handleSubmit(emit),
       submit: (data) => submitForm(emit, props.action, props.method, data)
     }
   }
