@@ -1,4 +1,9 @@
 <template>
-  <button><slot /></button>  
+  <button type="submit"><slot /></button>
 </template>
 
+<script>
+export default {
+  name: 'real-digital-button'
+}
+</script>
