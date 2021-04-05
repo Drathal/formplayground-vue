@@ -1,7 +1,7 @@
 /**
  * Validates a DOM Form and return an array with all errors
  * An empty form is also valid
- * 
+ *
  * @param {HTMLCollection} form - A DOM Form element
  * @return {string[]} array with error strings
  */

@@ -40,20 +40,20 @@ describe('<App />', () => {
 
     const spy = axios.mockImplementationOnce(() => Promise.resolve({ status: 200 }));
     const formInput =  {
-      "name": "bob", 
-      "phone": "335577", 
+      "name": "bob",
+      "phone": "335577",
       "subject": "any text"
     }
     const expectedApiCall = {
       "data": {
-        "name": "bob (modified)", 
-        "phone": "335577", 
+        "name": "bob (modified)",
+        "phone": "335577",
         "subject": "any text"
-      }, 
-      "method": "POST", 
+      },
+      "method": "POST",
       "url": "https://httpbin.org/post"
-    }    
-    
+    }
+
     render(App)
 
     const nameInput = screen.getByLabelText('name')
@@ -68,10 +68,10 @@ describe('<App />', () => {
     const button = screen.getByText('Send')
 
     await fireEvent.click(button)
-  
+
     await screen.findByText('Response Status: 200')
 
-    expect(spy).toBeCalledWith(expectedApiCall)    
+    expect(spy).toBeCalledWith(expectedApiCall)
   })
 })
 

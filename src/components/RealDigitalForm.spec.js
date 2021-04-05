@@ -4,7 +4,7 @@ import RealDigitalForm from './RealDigitalForm.vue'
 
 describe('<real-digital-form />', () => {
   it('can render slots', async () => {
-    render(RealDigitalForm, { 
+    render(RealDigitalForm, {
       props:  { method: 'POST', action: 'testaction' },
       slots:  { default: 'testSlot' }
     })

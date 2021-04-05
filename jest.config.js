@@ -2,7 +2,7 @@ module.exports = {
   globals: {},
   testEnvironment: 'jsdom',
   "moduleFileExtensions": [
-    "js",      
+    "js",
     "vue"
   ],
   transform: {
