@@ -12,7 +12,7 @@
     <real-digital-button>Send</real-digital-button>
   </real-digital-form>
 
-  {{ status }}
+  <span class="status" v-if="status">{{ status }}</span>
 </template>
 
 <script>
@@ -65,5 +65,11 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   text-align: center;
   margin-top: 60px;
+}
+
+.status {
+  background: #5ea356;
+  padding: 0.5rem 2rem;
+  color: white;
 }
 </style>
