@@ -53,12 +53,17 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+}
+
+body {
+  background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>

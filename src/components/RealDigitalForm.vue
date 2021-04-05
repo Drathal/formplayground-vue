@@ -60,3 +60,35 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+form {
+  color: #444;
+  background: #fff;
+  border: 1px solid #eee;
+  display: block;
+  width: 30rem;
+  padding: 1rem;
+  margin: 0 auto 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 10px 20px -6px rgb(0 0 0 / 52%);
+}
+
+p {
+  width: 30rem;
+  background: #ff5b3e;
+
+  color: #fff;
+
+  display: block;
+
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+
+  border: 0;
+  margin: 0 auto;
+
+  font-weight: 400;
+  box-shadow: 0px 10px 20px -6px rgb(0 0 0 / 12%);
+}
+</style>
