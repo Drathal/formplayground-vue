@@ -29,6 +29,8 @@ const hasErrors = (form) => {
 }
 
 const handleSubmit = (emit) => () => {
+  emit('onButtonClick')
+
   if (hasErrors(realDigitalForm)) {
     return
   }
@@ -39,7 +41,7 @@ const handleSubmit = (emit) => () => {
 
 export default {
   name: 'real-digital-form',
-  emits: ['onSubmit', 'onResponse'],
+  emits: ['onSubmit', 'onResponse', 'onButtonClick'],
   props: {
     action: {
       type: String,

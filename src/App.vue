@@ -3,6 +3,7 @@
     action="https://httpbin.org/post"
     method="POST"
     ref="form"
+    @on-button-click="handleClick"
     @on-submit="handleSubmit"
     @on-response="handleResponse"
   >
@@ -33,6 +34,10 @@ export default {
     const form = ref(null)
     const status = ref('')
 
+    const handleClick = () => {
+      status.value = ''
+    }
+
     const handleSubmit = (formData) => {
       formData.name = `${formData.name} (modified)`
       form.value.submit(formData)
@@ -46,7 +51,8 @@ export default {
       status,
       form,
       handleSubmit,
-      handleResponse
+      handleResponse,
+      handleClick
     }
   }
 }
@@ -68,6 +74,8 @@ body {
 }
 
 .status {
+  margin: 0.5rem 0;
+  display: inline-block;
   background: #5ea356;
   padding: 0.5rem 2rem;
   color: white;
