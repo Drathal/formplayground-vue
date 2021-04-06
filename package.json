@@ -7,7 +7,7 @@
     "test": "jest",
     "dev": "vite",
     "lint": "eslint --ext .js --ext .vue  './'",
-    "prepare": "yarn build && node packages/husky/lib/bin.js install"
+    "prepare": "node node_modules/husky/lib/bin.js install"
   },
   "dependencies": {
     "axios": "0.21.1",
