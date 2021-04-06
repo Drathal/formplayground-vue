@@ -6,7 +6,8 @@
     "build": "vite build",
     "test": "jest",
     "dev": "vite",
-    "lint": "eslint --ext .js --ext .vue  './'"
+    "lint": "eslint --ext .js --ext .vue  './'",
+    "prepare": "yarn build && node packages/husky/lib/bin.js install"
   },
   "dependencies": {
     "axios": "0.21.1",
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier-vue": "3.0.0-alpha.2",
     "eslint-plugin-testing-library": "3.10.2",
     "eslint-plugin-vue": "7.8.0",
+    "husky": "^6.0.0",
     "jest": "26.6.3",
     "prettier": "2.2.1",
     "vite": "2.1.5",
