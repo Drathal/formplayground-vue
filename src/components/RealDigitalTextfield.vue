@@ -2,10 +2,10 @@
   <div>
     <label :for="name">{{ name }}</label>
     <input
-      v-model="value"
+      :id="name"
       :placeholder="name"
       :name="name"
-      :id="name"
+      :value="value"
       :pattern="validation"
     />
   </div>
@@ -21,11 +21,13 @@ export default {
     },
     value: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     },
     validation: {
       type: String,
-      required: false
+      required: false,
+      default: null
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" ref="realDigitalForm" novalidate>
+  <form ref="realDigitalForm" novalidate @submit.prevent="handleSubmit">
     <slot />
   </form>
   <p v-for="error in errors" :key="error">
@@ -31,17 +31,16 @@ const hasErrors = (form) => {
 const handleSubmit = (emit) => () => {
   emit('onButtonClick')
 
-  if (hasErrors(realDigitalForm)) {
+  if (hasErrors(realDigitalForm.value)) {
     return
   }
 
-  const formJson = getJsonDataFromForm(realDigitalForm)
+  const formJson = getJsonDataFromForm(realDigitalForm.value)
   emit('onSubmit', formJson)
 }
 
 export default {
   name: 'real-digital-form',
-  emits: ['onSubmit', 'onResponse', 'onButtonClick'],
   props: {
     action: {
       type: String,
@@ -52,6 +51,7 @@ export default {
       required: true
     }
   },
+  emits: ['onSubmit', 'onResponse', 'onButtonClick'],
   setup(props, { emit }) {
     return {
       errors,
@@ -79,17 +79,12 @@ form {
 p {
   width: 30rem;
   background: #ff5b3e;
-
   color: #fff;
-
   display: block;
-
   padding: 0.25rem 1rem;
   cursor: pointer;
-
   border: 0;
   margin: 0 auto;
-
   font-weight: 400;
   box-shadow: 0px 10px 20px -6px rgb(0 0 0 / 12%);
 }

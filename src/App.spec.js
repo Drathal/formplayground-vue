@@ -1,4 +1,3 @@
-
 import { render, screen, fireEvent } from '@testing-library/vue'
 import axios from 'axios'
 import App from './App.vue'
@@ -37,21 +36,24 @@ describe('<App />', () => {
   })
 
   it('send data to an api ', async () => {
+    const spy = axios.mockImplementationOnce(() =>
+      Promise.resolve({ status: 200 })
+    )
 
-    const spy = axios.mockImplementationOnce(() => Promise.resolve({ status: 200 }));
-    const formInput =  {
-      "name": "bob",
-      "phone": "335577",
-      "subject": "any text"
+    const formInput = {
+      name: 'bob',
+      phone: '335577',
+      subject: 'any text'
     }
+
     const expectedApiCall = {
-      "data": {
-        "name": "bob (modified)",
-        "phone": "335577",
-        "subject": "any text"
+      data: {
+        name: 'bob (modified)',
+        phone: '335577',
+        subject: 'any text'
       },
-      "method": "POST",
-      "url": "https://httpbin.org/post"
+      method: 'POST',
+      url: 'https://httpbin.org/post'
     }
 
     render(App)
@@ -74,4 +76,3 @@ describe('<App />', () => {
     expect(spy).toBeCalledWith(expectedApiCall)
   })
 })
-

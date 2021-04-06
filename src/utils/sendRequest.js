@@ -5,8 +5,8 @@ import axios from 'axios'
  *
  * @param {string} url - url for request
  * @param {string} method - method to use (get, post, etc)
- * @param {object} data - Json data to send
- * @return {axios} unwrapped axios response
+ *     @param {object} data - Json data to send
+ * @return {axiosPromise} unwrapped axios response
  */
 export default (url, method, data) =>
   axios({

@@ -2,11 +2,11 @@
  * Validates a DOM Form and return an array with all errors
  * An empty form is also valid
  *
- * @param {HTMLCollection} form - A DOM Form element
+ * @param {HTMLFormElement} form - A DOM Form element
  * @return {string[]} array with error strings
  */
 export default (form) => {
-  const formElements = Object.values(form.value.elements)
+  const formElements = [...form.elements]
   if (!formElements) {
     return
   }
@@ -15,9 +15,11 @@ export default (form) => {
     const invalid = element.name && !element.validity.valid
     const newError = `Formfield ${element.name} is Invalid`
 
-    if (!invalid) {
+    if (!invalid || !element.name) {
       return prevData
     }
+
+    console.log('---->', element.name, element.validity.valid, element.validity)
 
     return [...prevData, newError]
   }, [])

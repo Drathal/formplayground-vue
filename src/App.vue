@@ -1,8 +1,8 @@
 <template>
   <real-digital-form
+    ref="form"
     action="https://httpbin.org/post"
     method="POST"
-    ref="form"
     @on-button-click="handleClick"
     @on-submit="handleSubmit"
     @on-response="handleResponse"
@@ -13,7 +13,7 @@
     <real-digital-button>Send</real-digital-button>
   </real-digital-form>
 
-  <span class="status" v-if="status">{{ status }}</span>
+  <span v-if="status" class="status">{{ status }}</span>
 </template>
 
 <script>
@@ -24,7 +24,7 @@ import RealDigitalTextfield from './components/RealDigitalTextfield.vue'
 import RealDigitalButton from './components/RealDigitalButton.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     RealDigitalForm,
     RealDigitalTextfield,
