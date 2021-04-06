@@ -41,10 +41,8 @@ div {
 
 label {
   flex: 1;
-
   padding: 0.5rem 0.5rem;
   display: block;
-
   font-size: 14px;
   font-weight: 400;
   text-align: right;
@@ -58,5 +56,20 @@ input {
   font-size: 14px;
   padding: 0.5rem 0.5rem;
   flex: 2;
+  border: 1px solid white;
+}
+
+input:invalid {
+  background: #f8c1b8;
+}
+
+input::placeholder {
+  color: #b8b8b8;
+  opacity: 1;
+}
+
+input:focus {
+  outline: 1px solid #686868;
+  color: black;
 }
 </style>

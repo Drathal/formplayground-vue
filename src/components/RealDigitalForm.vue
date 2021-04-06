@@ -2,9 +2,11 @@
   <form ref="realDigitalForm" novalidate @submit.prevent="handleSubmit">
     <slot />
   </form>
-  <p v-for="error in errors" :key="error">
-    {{ error }}
-  </p>
+  <transition-group name="fade">
+    <p v-for="error in errors" :key="error">
+      {{ error }}
+    </p>
+  </transition-group>
 </template>
 
 <script>
@@ -74,6 +76,7 @@ form {
   margin: 0 auto 1rem;
   border-radius: 0.25rem;
   box-shadow: 0px 10px 20px -6px rgb(0 0 0 / 52%);
+  text-align: right;
 }
 
 p {
@@ -87,5 +90,26 @@ p {
   margin: 0 auto;
   font-weight: 400;
   box-shadow: 0px 10px 20px -6px rgb(0 0 0 / 12%);
+}
+
+.fade-enter-active {
+  animation: bounce-in 0.5s;
+}
+.fade-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  65% {
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
