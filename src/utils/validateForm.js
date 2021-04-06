@@ -19,8 +19,6 @@ export default (form) => {
       return prevData
     }
 
-    console.log('---->', element.name, element.validity.valid, element.validity)
-
     return [...prevData, newError]
   }, [])
 

@@ -31,6 +31,7 @@ module.exports = {
     }
   },
   rules: {
-    'vue/component-definition-name-casing': [1, 'kebab-case']
+    'vue/component-definition-name-casing': [1, 'kebab-case'],
+    'no-console': 1
   }
 }
