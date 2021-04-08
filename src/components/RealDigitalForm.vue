@@ -7,18 +7,26 @@
       {{ error }}
     </p>
   </transition-group>
+
+  {{ loading }}
+  {{ error2 }}
+  {{ data }}
 </template>
 
 <script>
 import { ref } from 'vue'
 
 import { getJsonDataFromForm, sendRequest, validateForm } from '../utils'
+import useFetch from '../hooks/useFetch'
 
 const realDigitalForm = ref(null)
 const errors = ref([])
 
-const submitForm = async (emit, action, method, formData) => {
+const submitForm = async (emit, action, method, formData, fetchData) => {
   const response = await sendRequest(action, method, formData)
+
+  fetchData(formData, action, method)
+
   emit('onResponse', response)
 }
 
@@ -55,11 +63,18 @@ export default {
   },
   emits: ['onSubmit', 'onResponse', 'onButtonClick'],
   setup(props, { emit }) {
+    const { loading, error, data, fetchData } = useFetch()
+
     return {
+      loading,
+      error2: error,
+      data,
+
       errors,
       realDigitalForm,
-      handleSubmit: handleSubmit(emit),
-      submit: (data) => submitForm(emit, props.action, props.method, data)
+      handleSubmit: handleSubmit(emit, fetchData),
+      submit: (data) =>
+        submitForm(emit, props.action, props.method, data, fetchData)
     }
   }
 }
