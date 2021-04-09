@@ -12,33 +12,29 @@
 <script>
 import { ref } from 'vue'
 
-import { getJsonDataFromForm, sendRequest, validateForm } from '../utils'
+import { getJsonDataFromForm, sendRequest, getFormErrors } from '../utils'
 
 const realDigitalForm = ref(null)
 const errors = ref([])
 
-const submitForm = async (emit, action, method, formData) => {
-  const response = await sendRequest(action, method, formData)
-  emit('onResponse', response)
-}
+const handleSubmit = (emit, action, method) => async () => {
+  const formJson = getJsonDataFromForm(realDigitalForm.value)
 
-const hasErrors = (form) => {
-  const formErrors = validateForm(form)
-  const hasError = formErrors.length > 0
-  errors.value = formErrors
+  const eventData = { ...formJson }
+  emit('onSubmit', eventData)
 
-  return hasError
-}
+  const elements = [...realDigitalForm.value.elements]
+  elements.map((element) => {
+    element.value = eventData[element.name]
+  })
 
-const handleSubmit = (emit) => () => {
-  emit('onButtonClick')
-
-  if (hasErrors(realDigitalForm.value)) {
+  if (!realDigitalForm.value.checkValidity()) {
+    errors.value = getFormErrors(realDigitalForm.value)
     return
   }
 
-  const formJson = getJsonDataFromForm(realDigitalForm.value)
-  emit('onSubmit', formJson)
+  const response = await sendRequest(action, method, eventData)
+  emit('onResponse', response)
 }
 
 export default {
@@ -53,13 +49,12 @@ export default {
       required: true
     }
   },
-  emits: ['onSubmit', 'onResponse', 'onButtonClick'],
+  emits: ['onSubmit', 'onResponse'],
   setup(props, { emit }) {
     return {
       errors,
       realDigitalForm,
-      handleSubmit: handleSubmit(emit),
-      submit: (data) => submitForm(emit, props.action, props.method, data)
+      handleSubmit: handleSubmit(emit, props.action, props.method)
     }
   }
 }

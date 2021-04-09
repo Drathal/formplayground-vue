@@ -41,14 +41,14 @@ describe('<App />', () => {
     )
 
     const formInput = {
-      name: 'bob',
+      name: '',
       phone: '335577',
       subject: 'any text'
     }
 
     const expectedApiCall = {
       data: {
-        name: 'bob (modified)',
+        name: 'john',
         phone: '335577',
         subject: 'any text'
       },
