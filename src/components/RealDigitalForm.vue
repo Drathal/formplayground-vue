@@ -19,13 +19,11 @@ const errors = ref([])
 
 const handleSubmit = (emit, action, method) => async () => {
   const formJson = getJsonDataFromForm(realDigitalForm.value)
-
-  const eventData = { ...formJson }
-  emit('onSubmit', eventData)
+  emit('onSubmit', formJson)
 
   const elements = [...realDigitalForm.value.elements]
   elements.map((element) => {
-    element.value = eventData[element.name]
+    element.value = formJson[element.name]
   })
 
   if (!realDigitalForm.value.checkValidity()) {
@@ -33,7 +31,7 @@ const handleSubmit = (emit, action, method) => async () => {
     return
   }
 
-  const response = await sendRequest(action, method, eventData)
+  const response = await sendRequest(action, method, formJson)
   emit('onResponse', response)
 }
 
