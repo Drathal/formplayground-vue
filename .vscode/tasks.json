@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start dev server",
+      "type": "shell",
+      "command": "yarn && npm run dev",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "develop"
+      },
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "start unit tests",
+      "type": "shell",
+      "command": "npm run test -- --watch",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "develop"
+      },
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "clean",
+      "type": "shell",
+      "command": "rm -rf node_modules && yarn"
+    }
+  ]
+}
