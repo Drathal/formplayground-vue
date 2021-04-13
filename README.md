@@ -1,7 +1,6 @@
 # Form Element
 
 The goal is to write a series of reusable Vue.js elements that can send user-entered data to a server.
-This example HTML snippet should work as described after you implemented the task
 
 ```html
 <form-field action="https://httpbin.org/post" method="POST">
