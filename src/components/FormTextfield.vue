@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'real-digital-textfield',
+  name: 'form-textfield',
   props: {
     name: {
       type: String,

@@ -1,5 +1,5 @@
 <template>
-  <form ref="realDigitalForm" novalidate @submit.prevent="handleSubmit">
+  <form ref="formRef" novalidate @submit.prevent="handleSubmit">
     <slot />
   </form>
   <transition-group name="fade">
@@ -14,20 +14,20 @@ import { ref } from 'vue'
 
 import { getJsonDataFromForm, sendRequest, getFormErrors } from '../utils'
 
-const realDigitalForm = ref(null)
+const formRef = ref(null)
 const errors = ref([])
 
 const handleSubmit = (emit, action, method) => async () => {
-  const formJson = getJsonDataFromForm(realDigitalForm.value)
+  const formJson = getJsonDataFromForm(formRef.value)
   emit('onSubmit', formJson)
 
-  const elements = [...realDigitalForm.value.elements]
+  const elements = [...formRef.value.elements]
   elements.map((element) => {
     element.value = formJson[element.name]
   })
 
-  if (!realDigitalForm.value.checkValidity()) {
-    errors.value = getFormErrors(realDigitalForm.value)
+  if (!formRef.value.checkValidity()) {
+    errors.value = getFormErrors(formRef.value)
     return
   }
 
@@ -36,7 +36,7 @@ const handleSubmit = (emit, action, method) => async () => {
 }
 
 export default {
-  name: 'real-digital-form',
+  name: 'form-field',
   props: {
     action: {
       type: String,
@@ -51,7 +51,7 @@ export default {
   setup(props, { emit }) {
     return {
       errors,
-      realDigitalForm,
+      formRef,
       handleSubmit: handleSubmit(emit, props.action, props.method)
     }
   }

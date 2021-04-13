@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/vue'
-import RealDigitalTextfield from './RealDigitalTextfield.vue'
+import FormTextfield from './FormTextfield.vue'
 
-describe('<real-digital-textfield />', () => {
+describe('<form-textfield />', () => {
   it('can render a custom label', async () => {
-    render(RealDigitalTextfield, {
+    render(FormTextfield, {
       props: { name: 'testName', value: 'testValue', validation: '[0-9]+' }
     })
     expect(screen.queryByText('testName')).toBeTruthy()

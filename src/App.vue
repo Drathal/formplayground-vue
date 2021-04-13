@@ -1,16 +1,16 @@
 <template>
-  <real-digital-form
+  <form-field
     ref="form"
     action="https://httpbin.org/post"
     method="POST"
     @on-submit="handleSubmit"
     @on-response="handleResponse"
   >
-    <real-digital-textfield name="name" validation="[a-z]+" />
-    <real-digital-textfield name="phone" validation="[0-9]+" />
-    <real-digital-textfield name="subject" />
-    <real-digital-button>Send</real-digital-button>
-  </real-digital-form>
+    <form-textfield name="name" validation="[a-z]+" />
+    <form-textfield name="phone" validation="[0-9]+" />
+    <form-textfield name="subject" />
+    <form-button>Send</form-button>
+  </form-field>
 
   <span v-if="status" class="status">{{ status }}</span>
 </template>
@@ -18,16 +18,16 @@
 <script>
 import { ref } from 'vue'
 
-import RealDigitalForm from './components/RealDigitalForm.vue'
-import RealDigitalTextfield from './components/RealDigitalTextfield.vue'
-import RealDigitalButton from './components/RealDigitalButton.vue'
+import FormField from './components/FormField.vue'
+import FormTextfield from './components/FormTextfield.vue'
+import FormButton from './components/FormButton.vue'
 
 export default {
   name: 'app',
   components: {
-    RealDigitalForm,
-    RealDigitalTextfield,
-    RealDigitalButton
+    FormField,
+    FormTextfield,
+    FormButton
   },
   setup() {
     const form = ref(null)

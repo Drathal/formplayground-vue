@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/vue'
-import RealDigitalForm from './RealDigitalForm.vue'
+import FormField from './FormField.vue'
 
-describe('<real-digital-form />', () => {
+describe('<form-field />', () => {
   it('can render slots', async () => {
-    render(RealDigitalForm, {
+    render(FormField, {
       props: { method: 'POST', action: 'testaction' },
       slots: { default: 'testSlot' }
     })

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/vue'
-import RealDigitalButton from './RealDigitalButton.vue'
+import FormButton from './FormButton.vue'
 
-describe('<real-digital-button />', () => {
+describe('<form-button />', () => {
   it('can render a custom label', async () => {
-    render(RealDigitalButton, { slots: { default: 'ButtonText' } })
+    render(FormButton, { slots: { default: 'ButtonText' } })
     expect(screen.queryByText('ButtonText')).toBeTruthy()
   })
 })

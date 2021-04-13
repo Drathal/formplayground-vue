@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'real-digital-button'
+  name: 'form-button'
 }
 </script>
 
