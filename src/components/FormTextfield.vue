@@ -11,8 +11,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'form-textfield',
   props: {
     name: {
@@ -30,7 +32,7 @@ export default {
       default: null
     }
   }
-}
+})
 </script>
 
 <style scoped>

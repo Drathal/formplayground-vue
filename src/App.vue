@@ -15,14 +15,24 @@
   <span v-if="status" class="status">{{ status }}</span>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
 
 import FormField from './components/FormField.vue'
 import FormTextfield from './components/FormTextfield.vue'
 import FormButton from './components/FormButton.vue'
 
-export default {
+interface FormData {
+  name: string
+  phone: string
+  subject: string
+}
+
+interface ResponseData {
+  status: string
+}
+
+export default defineComponent({
   name: 'app',
   components: {
     FormField,
@@ -33,12 +43,12 @@ export default {
     const form = ref(null)
     const status = ref('')
 
-    const handleSubmit = (formData) => {
+    const handleSubmit = (formData: FormData) => {
       status.value = ''
       formData.name = formData.name ? formData.name : `john`
     }
 
-    const handleResponse = (response) => {
+    const handleResponse = (response: ResponseData) => {
       status.value = `Response Status: ${response.status}`
     }
 
@@ -49,7 +59,7 @@ export default {
       handleResponse
     }
   }
-}
+})
 </script>
 
 <style>

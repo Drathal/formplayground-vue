@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/vue'
 import axios from 'axios'
 import App from './App.vue'
 
-jest.mock('axios')
+jest.mock('axios', () => jest.fn())
 
 describe('<App />', () => {
   it('has three Textfields and a Send Button ', async () => {
@@ -36,7 +36,7 @@ describe('<App />', () => {
   })
 
   it('send data to an api ', async () => {
-    const spy = axios.mockImplementationOnce(() =>
+    const spy = ((axios as unknown) as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({ status: 200 })
     )
 

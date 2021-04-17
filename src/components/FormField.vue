@@ -9,33 +9,21 @@
   </transition-group>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, defineComponent, PropType } from 'vue'
 
-import { getJsonDataFromForm, sendRequest, getFormErrors } from '../utils'
+import { getJsonDataFromForm, getFormErrors } from '../utils'
+import sendRequest, { Method, HttpResponse } from '../utils/sendRequest'
 
-const formRef = ref(null)
-const errors = ref([])
-
-const handleSubmit = (emit, action, method) => async () => {
-  const formJson = getJsonDataFromForm(formRef.value)
-  emit('onSubmit', formJson)
-
-  const elements = [...formRef.value.elements]
-  elements.map((element) => {
-    element.value = formJson[element.name]
-  })
-
-  if (!formRef.value.checkValidity()) {
-    errors.value = getFormErrors(formRef.value)
-    return
-  }
-
-  const response = await sendRequest(action, method, formJson)
-  emit('onResponse', response)
+type FormElement = HTMLInputElement | HTMLTextAreaElement
+interface GenericFormData {
+  [key: string]: string
 }
 
-export default {
+const formRef = ref<HTMLFormElement | null>(null)
+const errors = ref<string[]>([])
+
+export default defineComponent({
   name: 'form-field',
   props: {
     action: {
@@ -43,19 +31,50 @@ export default {
       required: true
     },
     method: {
-      type: String,
+      type: String as PropType<Method>,
       required: true
     }
   },
-  emits: ['onSubmit', 'onResponse'],
+  emits: {
+    onSubmit: (formData: GenericFormData) => true || formData,
+    onResponse: (response: HttpResponse<GenericFormData>) => true || response
+  },
   setup(props, { emit }) {
+    const handleSubmit = async () => {
+      if (!formRef.value) {
+        return
+      }
+
+      const formJson = getJsonDataFromForm(formRef.value)
+      emit('onSubmit', formJson)
+
+      const elements = [...formRef.value.elements] as FormElement[]
+      elements.map((element) => {
+        element.value = formJson[element.name]
+      })
+
+      errors.value = []
+      if (!formRef.value.checkValidity()) {
+        errors.value = getFormErrors(formRef.value)
+        return
+      }
+
+      const response = await sendRequest<typeof formJson>(
+        props.action,
+        props.method,
+        formJson
+      )
+
+      emit('onResponse', response)
+    }
+
     return {
       errors,
       formRef,
-      handleSubmit: handleSubmit(emit, props.action, props.method)
+      handleSubmit
     }
   }
-}
+})
 </script>
 
 <style scoped>

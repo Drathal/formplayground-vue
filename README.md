@@ -24,3 +24,5 @@ The goal is to write a series of reusable Vue.js elements that can send user-ent
 - ✔️ The validation is specified as a regular expression in the attribute validation of `<form-textfield />`.
 - ✔️ In case of a validation error, the submit will be aborted and the errors are shown in a p tag below the `<form-textfield />`.
 - ✔️ When the server responds, the onResponse event, which has the HTTP response in the payload, should be triggered.
+
+https://github.com/danielwaltz/vue-typescript-prettier/blob/main/package.json

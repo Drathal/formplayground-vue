@@ -1,9 +1,16 @@
 module.exports = {
   extends: [
-    'eslint:recommended',
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended'
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint'
   ],
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2020
+  },
   env: {
     node: true,
     es6: true,
@@ -19,7 +26,7 @@ module.exports = {
         customBlocks: {
           docs: { lang: 'markdown' },
           config: { lang: 'json' },
-          module: { lang: 'js' },
+          module: { lang: 'ts' },
           comments: false
         }
       },
@@ -31,7 +38,8 @@ module.exports = {
     }
   },
   rules: {
-    'vue/component-definition-name-casing': [1, 'kebab-case'],
-    'no-console': 1
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'vue/component-definition-name-casing': [1, 'kebab-case']
   }
 }
